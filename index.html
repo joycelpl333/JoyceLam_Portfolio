@@ -3,79 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joyce Portfolio 2025</title>
+    <title>Joyce Portfolio | Creative Professional</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <button id="lang-switch" class="lang-btn">EN / 中</button>
+    <header class="top-nav">
+        <button id="menu-open" class="nav-icon-btn"><i class="fas fa-bars"></i> MENU</button>
+        <button id="lang-switch" class="nav-icon-btn">EN / 中</button>
+    </header>
 
     <nav id="sidebar" class="sidebar">
         <button id="close-menu" class="close-btn">&times;</button>
         <ul class="nav-links">
-            <li><a href="#home" data-key="nav-home">主頁</a></li>
-            <li><a href="#photo" data-key="nav-photo">藝人攝影</a></li>
-            <li><a href="#video" data-key="nav-video">影片製作</a></li>
-            <li><a href="#social" data-key="nav-social">社群經營</a></li>
-            <li><a href="disclaimer.html" data-key="nav-disclaimer">免責聲明</a></li>
-            <li><a href="contact.html" data-key="nav-contact">聯絡我</a></li>
+            <li><a href="#home" data-key="nav-home">主頁 Home</a></li>
+            <li><a href="#photo" data-key="nav-photo">藝人攝影 Artiste</a></li>
+            <li><a href="#video" data-key="nav-video">影片製作 Production</a></li>
+            <li><a href="#social" data-key="nav-social">社群經營 Creative</a></li>
+            <li><hr></li>
+            <li><a href="disclaimer.html">免責聲明 Disclaimer</a></li>
+            <li><a href="contact.html">聯絡我 Contact</a></li>
         </ul>
     </nav>
 
-    <button id="menu-open" class="menu-open-btn"><i class="fas fa-bars"></i></button>
-
     <main id="home">
         <section class="hero-overview">
-            <h1 class="fade-in">Joyce PORTFOLIO</h1>
+            <div class="hero-title-box">
+                <h1 class="main-title">Joyce Lam</h1>
+                <p class="sub-title">PORTFOLIO 2025</p>
+            </div>
             <div class="module-container">
                 <div class="module-card" onclick="scrollToSection('photo')">
-                    <div class="card-bg photo-bg"></div>
-                    <span data-key="mod-photo">藝人攝影</span>
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1492691523567-30730029d031?auto=format&fit=crop&q=80&w=1000');"></div>
+                    <div class="module-content">
+                        <h2>ARTISTE</h2>
+                        <p>Photography & Retouching</p>
+                    </div>
                 </div>
                 <div class="module-card" onclick="scrollToSection('video')">
-                    <div class="card-bg video-bg"></div>
-                    <span data-key="mod-video">影片製作</span>
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&q=80&w=1000');"></div>
+                    <div class="module-content">
+                        <h2>PRODUCTION</h2>
+                        <p>Video & Cinematography</p>
+                    </div>
                 </div>
                 <div class="module-card" onclick="scrollToSection('social')">
-                    <div class="card-bg social-bg"></div>
-                    <span data-key="mod-social">社群經營</span>
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=1000');"></div>
+                    <div class="module-content">
+                        <h2>CREATIVE</h2>
+                        <p>Branding & Social Media</p>
+                    </div>
                 </div>
             </div>
         </section>
-        
-<section class="hero-overview">
-    <div class="module-container">
-        <div class="module-card" onclick="scrollToSection('photo')">
-            <div class="card-bg" style="background-image: url('images/photo-cover.jpg');"></div>
-            <div class="module-title">
-                <h2 data-key="mod-photo">ARTISTE</h2>
-                <p data-key="mod-photo-sub">Photography & Portraits</p>
-            </div>
-        </div>
 
-        <div class="module-card" onclick="scrollToSection('video')">
-            <div class="card-bg" style="background-image: url('images/video-cover.jpg');"></div>
-            <div class="module-title">
-                <h2 data-key="mod-video">PRODUCTION</h2>
-                <p data-key="mod-video-sub">Cinematography & Edit</p>
-            </div>
-        </div>
-
-        <div class="module-card" onclick="scrollToSection('social')">
-            <div class="card-bg" style="background-image: url('images/social-cover.jpg');"></div>
-            <div class="module-title">
-                <h2 data-key="mod-social">CREATIVE</h2>
-                <p data-key="mod-social-sub">Social Media & Branding</p>
-            </div>
-        </div>
-    </div>
-</section>
+        <section id="photo" class="work-section">
+            <h3 class="section-label">01. ARTISTE</h3>
+            <div id="photo-grid" class="work-grid">
+                </div>
+        </section>
         
-        <section id="photo" class="work-section"></section>
-        <section id="video" class="work-section"></section>
-        <section id="social" class="work-section"></section>
-    </main>
+        </main>
 
     <button id="back-to-top" class="back-to-top">↑</button>
 
