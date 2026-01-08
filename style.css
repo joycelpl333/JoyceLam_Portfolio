@@ -70,3 +70,61 @@ body {
     .module-container { flex-direction: column; }
     .work-grid { padding: 20px; }
 }
+/* 子頁面通用樣式 */
+.sub-page {
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+.back-home {
+    text-decoration: none;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.back-home:hover { color: var(--primary-color); }
+
+.content-box, .contact-section {
+    margin-top: 40px;
+    animation: fadeIn 0.8s ease;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.contact-item {
+    text-align: center;
+    padding: 30px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+.contact-item:hover { border-color: #333; transform: translateY(-5px); }
+
+.contact-item i { font-size: 2rem; margin-bottom: 15px; }
+
+.action-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 20px;
+    border: 1px solid #333;
+    color: #333;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.action-btn:hover { background: #333; color: #fff; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
