@@ -1,0 +1,51 @@
+// 1. 側邊欄開關
+const sidebar = document.getElementById('sidebar');
+document.getElementById('menu-open').onclick = () => sidebar.classList.add('active');
+document.getElementById('close-menu').onclick = () => sidebar.classList.remove('active');
+
+// 2. 回到頁首按鈕與自動淡化
+const bttBtn = document.getElementById('back-to-top');
+let fadeTimer;
+
+window.onscroll = () => {
+    // 滾動超過 300px 才顯示
+    if (window.scrollY > 300) {
+        bttBtn.style.display = "block";
+        bttBtn.style.opacity = "1";
+        
+        // 停止滾動 2 秒後變半透明
+        clearTimeout(fadeTimer);
+        fadeTimer = setTimeout(() => {
+            bttBtn.style.opacity = "0.5";
+        }, 2000);
+    } else {
+        bttBtn.style.display = "none";
+    }
+};
+
+// 平滑滾動至模組
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+// 3. 語言切換邏輯 (範例)
+let currentLang = 'zh';
+const langBtn = document.getElementById('lang-switch');
+langBtn.onclick = () => {
+    currentLang = currentLang === 'zh' ? 'en' : 'zh';
+    updateLanguage();
+};
+
+function updateLanguage() {
+    document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        el.innerText = translations[currentLang][key];
+    });
+}
+
+// 4. Debug 輔助代碼
+console.log("Portfolio System Initialized...");
+window.onerror = (msg, url, line) => {
+    console.error(`Debug Info: ${msg} at ${line}`);
+    return false;
+};
