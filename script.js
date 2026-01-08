@@ -34,14 +34,31 @@ window.addEventListener('scroll', () => {
     }, 2000); // 靜置 2 秒
 });
 
-// 3. 側邊欄控制
+// // 側邊欄控制邏輯
 const sidebar = document.getElementById('sidebar');
-document.getElementById('menu-open').onclick = () => {
-    sidebar.style.left = '0';
-};
-document.getElementById('close-menu').onclick = () => {
-    sidebar.style.left = '-300px';
-};
+const menuBtn = document.getElementById('menu-open');
+const closeBtn = document.getElementById('close-menu');
+
+// 打開側邊欄
+if (menuBtn) {
+    menuBtn.onclick = function() {
+        sidebar.classList.add('active');
+    };
+}
+
+// 關閉側邊欄
+if (closeBtn) {
+    closeBtn.onclick = function() {
+        sidebar.classList.remove('active');
+    };
+}
+
+// 點擊選單連結後自動關閉側邊欄 (改善用戶體驗)
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.onclick = () => {
+        sidebar.classList.remove('active');
+    };
+});
 
 // 4. Reveal Animation (進入視窗時淡入)
 const observerOptions = { threshold: 0.1 };
