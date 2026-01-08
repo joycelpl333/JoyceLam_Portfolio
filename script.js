@@ -1,3 +1,60 @@
+// 1. 頁面平滑滾動控制
+function scrollToSection(id) {
+    const target = document.getElementById(id);
+    if (target) {
+        window.scrollTo({
+            top: target.offsetTop,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// 2. 回到頁首按鈕：智能顯示與 50% 透明度邏輯
+const bttBtn = document.getElementById('back-to-top');
+let isScrolling;
+
+window.addEventListener('scroll', () => {
+    // 顯示/隱藏邏輯
+    if (window.scrollY > 500) {
+        bttBtn.style.opacity = "1";
+        bttBtn.style.visibility = "visible";
+    } else {
+        bttBtn.style.opacity = "0";
+        bttBtn.style.visibility = "hidden";
+    }
+
+    // 靜置自動變為 50% 透明
+    window.clearTimeout(isScrolling);
+    bttBtn.style.opacity = "1"; // 滾動時保持 100%
+
+    isScrolling = setTimeout(() => {
+        if (window.scrollY > 500) {
+            bttBtn.style.opacity = "0.5";
+        }
+    }, 2000); // 靜置 2 秒
+});
+
+// 3. 側邊欄控制
+const sidebar = document.getElementById('sidebar');
+document.getElementById('menu-open').onclick = () => {
+    sidebar.style.left = '0';
+};
+document.getElementById('close-menu').onclick = () => {
+    sidebar.style.left = '-300px';
+};
+
+// 4. Reveal Animation (進入視窗時淡入)
+const observerOptions = { threshold: 0.1 };
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.work-section').forEach(el => observer.observe(el));
+
 // 1. 側邊欄開關
 const sidebar = document.getElementById('sidebar');
 document.getElementById('menu-open').onclick = () => sidebar.classList.add('active');
