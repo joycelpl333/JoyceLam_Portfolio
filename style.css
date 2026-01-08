@@ -75,3 +75,36 @@ body {
     background: white; border-radius: 50%; cursor: pointer;
     transition: 0.5s; opacity: 0; z-index: 99;
 }
+
+/* 修改側邊欄初始狀態 */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px; /* 改為負值，讓它初始隱藏在螢幕左側 */
+    width: 280px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 2000;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 10px 0 30px rgba(0,0,0,0.05);
+    padding: 80px 40px;
+    box-sizing: border-box;
+}
+
+/* 當有 .active 類別時才顯示 */
+.sidebar.active {
+    left: 0 !important;
+}
+
+/* 關閉按鈕樣式 */
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text);
+}
