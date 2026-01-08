@@ -49,3 +49,32 @@ window.onerror = (msg, url, line) => {
     console.error(`Debug Info: ${msg} at ${line}`);
     return false;
 };
+// 監控捲動動畫
+const observerOptions = {
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.work-section').forEach(section => {
+    section.style.opacity = "0";
+    section.style.transform = "translateY(50px)";
+    section.style.transition = "all 0.8s ease-out";
+    observer.observe(section);
+});
+
+// 側邊欄展開效果加強
+const menuBtn = document.getElementById('menu-open');
+const sidebar = document.getElementById('sidebar');
+
+menuBtn.addEventListener('click', () => {
+    sidebar.style.left = '0';
+    // 這裡可以加入背景遮罩效果
+});
