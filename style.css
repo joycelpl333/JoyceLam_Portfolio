@@ -1,168 +1,77 @@
-/* 引入 Google Fonts 提升質感 */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;500&display=swap');
 
 :root {
     --bg: #ffffff;
     --text: #1a1a1a;
-    --accent: #c5a059; /* 香檳金，用於點綴 */
-    --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    --accent: #c5a059;
+    --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 body {
-    background-color: var(--bg);
-    color: var(--text);
-    font-family: 'Montserrat', "PingFang HK", sans-serif;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Montserrat', sans-serif; overflow-x: hidden;
 }
 
-/* 導航按鈕：高級毛玻璃感 */
-.menu-open-btn, .lang-btn {
-    position: fixed;
-    top: 40px;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 12px 20px;
-    letter-spacing: 2px;
-    font-size: 11px;
-    text-transform: uppercase;
-    cursor: pointer;
-    z-index: 100;
-    transition: var(--transition);
+/* 頂部導航導航固定 */
+.top-nav {
+    position: fixed; top: 0; width: 100%; height: 100px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 50px; box-sizing: border-box; z-index: 1000;
 }
 
-.menu-open-btn { left: 40px; }
-.lang-btn { right: 40px; }
-
-.lang-btn:hover, .menu-open-btn:hover {
-    background: var(--text);
-    color: white;
-    transform: translateY(-2px);
+.nav-icon-btn {
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);
+    border: none; padding: 10px 20px; letter-spacing: 2px;
+    font-size: 10px; cursor: pointer; transition: 0.3s;
 }
 
-/* Hero Section: 3模組動態擴展佈局 */
-.hero-overview {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    padding: 0; /* 滿版設計 */
+.nav-icon-btn:hover { background: var(--text); color: white; }
+
+/* 標題區域 */
+.hero-title-box {
+    position: absolute; top: 15%; left: 50%; transform: translateX(-50%);
+    text-align: center; z-index: 10; pointer-events: none;
 }
 
-.module-container {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-}
+.main-title { font-size: 4rem; font-weight: 200; letter-spacing: 15px; margin: 0; text-transform: uppercase; }
+.sub-title { font-size: 0.8rem; letter-spacing: 5px; color: var(--accent); }
+
+/* 三模組高級感核心佈局 */
+.hero-overview { position: relative; height: 100vh; width: 100%; overflow: hidden; }
+.module-container { display: flex; height: 100%; width: 100%; }
 
 .module-card {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    transition: var(--transition);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    flex: 1; position: relative; overflow: hidden; cursor: pointer;
+    transition: var(--transition); border-right: 1px solid rgba(0,0,0,0.05);
 }
 
-/* 懸停時模組擴張效果 */
-.module-card:hover {
-    flex: 1.8;
-}
+.module-card:hover { flex: 2; }
 
 .card-bg {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    filter: grayscale(40%) brightness(0.8);
-    transition: var(--transition);
+    width: 100%; height: 100%; background-size: cover; background-position: center;
+    filter: grayscale(100%); transition: var(--transition);
 }
 
-.module-card:hover .card-bg {
-    filter: grayscale(0%) brightness(1);
-    transform: scale(1.05);
+.module-card:hover .card-bg { filter: grayscale(0%); transform: scale(1.05); }
+
+.module-content {
+    position: absolute; bottom: 60px; left: 40px; color: white;
+    mix-blend-mode: difference; /* 讓文字在任何背景色上都可見 */
 }
 
-.module-title {
-    position: absolute;
-    bottom: 50px;
-    left: 40px;
-    color: white;
-    z-index: 2;
-}
+.module-content h2 { font-size: 1.5rem; font-weight: 300; letter-spacing: 4px; }
+.module-content p { font-size: 0.7rem; opacity: 0; transform: translateY(10px); transition: 0.5s; }
 
-.module-title h2 {
-    font-size: 1.8rem;
-    font-weight: 200;
-    margin: 0;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-}
+.module-card:hover .module-content p { opacity: 1; transform: translateY(0); }
 
-.module-title p {
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: var(--transition);
-}
+/* 作品區間 Padding */
+.work-section { padding: 150px 10%; background: #fff; }
+.section-label { font-size: 0.7rem; letter-spacing: 5px; color: var(--accent); margin-bottom: 50px; }
 
-.module-card:hover .module-title p {
-    opacity: 0.8;
-    transform: translateY(0);
-}
-
-/* 作品區塊的 Padding 與呼吸感 */
-.work-section {
-    padding: 150px 10%;
-    max-width: 1600px;
-    margin: 0 auto;
-}
-
-/* 作品卡片的半透明提示 */
-.project-card {
-    position: relative;
-    margin-bottom: 80px;
-}
-
-.overlay-hint {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.9);
-    color: #000;
-    padding: 15px 30px;
-    border-radius: 40px;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: 0;
-    transition: var(--transition);
-    pointer-events: none;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.project-card:hover .overlay-hint {
-    opacity: 1;
-}
-
-/* 智能回到頂部按鈕 */
+/* 按鈕美化 */
 .back-to-top {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 50px;
-    height: 50px;
-    border: 1px solid rgba(0,0,0,0.1);
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    cursor: pointer;
-    transition: var(--transition);
-    z-index: 99;
+    position: fixed; bottom: 40px; right: 40px;
+    width: 50px; height: 50px; border: 1px solid #ddd;
+    background: white; border-radius: 50%; cursor: pointer;
+    transition: 0.5s; opacity: 0; z-index: 99;
 }
