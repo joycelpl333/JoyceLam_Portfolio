@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyce Portfolio 2025</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <button id="lang-switch" class="lang-btn">EN / 中</button>
+
+    <nav id="sidebar" class="sidebar">
+        <button id="close-menu" class="close-btn">&times;</button>
+        <ul class="nav-links">
+            <li><a href="#home" data-key="nav-home">主頁</a></li>
+            <li><a href="#photo" data-key="nav-photo">藝人攝影</a></li>
+            <li><a href="#video" data-key="nav-video">影片製作</a></li>
+            <li><a href="#social" data-key="nav-social">社群經營</a></li>
+            <li><a href="disclaimer.html" data-key="nav-disclaimer">免責聲明</a></li>
+            <li><a href="contact.html" data-key="nav-contact">聯絡我</a></li>
+        </ul>
+    </nav>
+
+    <button id="menu-open" class="menu-open-btn"><i class="fas fa-bars"></i></button>
+
+    <main id="home">
+        <section class="hero-overview">
+            <h1 class="fade-in">Joyce PORTFOLIO</h1>
+            <div class="module-container">
+                <div class="module-card" onclick="scrollToSection('photo')">
+                    <div class="card-bg photo-bg"></div>
+                    <span data-key="mod-photo">藝人攝影</span>
+                </div>
+                <div class="module-card" onclick="scrollToSection('video')">
+                    <div class="card-bg video-bg"></div>
+                    <span data-key="mod-video">影片製作</span>
+                </div>
+                <div class="module-card" onclick="scrollToSection('social')">
+                    <div class="card-bg social-bg"></div>
+                    <span data-key="mod-social">社群經營</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="photo" class="work-section"></section>
+        <section id="video" class="work-section"></section>
+        <section id="social" class="work-section"></section>
+    </main>
+
+    <button id="back-to-top" class="back-to-top">↑</button>
+
+    <script src="content.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
