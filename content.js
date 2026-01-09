@@ -41,4 +41,6 @@ const projectData = [
     
     // 社群經營類別
     { id: 4, category: "social", title: "Mushroom-X", img: "images/mx_1.jpg", url: "https://instagram.com/..." }
+    { id: 5, category: "ai", title: "AI Generated Art", img: "images/ai_1.jpg", url: "https://your-ai-link.com" },
+    { id: 6, category: "ai", title: "AI App Interface", img: "images/ai_2.jpg", url: "https://your-ai-link.com" }
 ];
