@@ -14,14 +14,71 @@ body { margin: 0; font-family: 'Montserrat', sans-serif; background: var(--bg); 
 .nav-icon-btn { pointer-events: auto; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border: 1px solid #eee; padding: 10px 20px; font-size: 11px; letter-spacing: 2px; cursor: pointer; transition: 0.3s; }
 .nav-icon-btn:hover { background: var(--text); color: white; }
 
-/* 側邊欄修復 */
-.sidebar { position: fixed; top: 0; left: -300px; width: 280px; height: 100%; background: #fff; z-index: 2000; transition: var(--transition); padding: 80px 40px; box-shadow: 10px 0 50px rgba(0,0,0,0.05); }
-.sidebar.active { left: 0; }
-.nav-links { list-style: none; padding: 0; }
-.nav-links li { margin: 25px 0; }
-.nav-links a { text-decoration: none; color: var(--text); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
-.nav-links a:hover { color: var(--accent); padding-left: 10px; }
-.close-btn { position: absolute; top: 30px; right: 30px; border: none; background: none; font-size: 24px; cursor: pointer; }
+/* --- 側邊欄修復 (完全隱藏) --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: #fff;
+    z-index: 2000;
+    /* 使用百分比位移，確保完全藏在螢幕外 */
+    transform: translateX(-110%); 
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 10px 0 50px rgba(0,0,0,0.1);
+}
+
+.sidebar.active {
+    transform: translateX(0); /* 點擊後滑出 */
+}
+
+/* --- 4 模組適配佈局 --- */
+.module-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* 電腦版：4個並排 */
+.module-card {
+    flex: 1;
+    position: relative;
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.module-card:hover {
+    flex: 1.5;
+}
+
+/* --- 響應式：手機與 iPad 設定 --- */
+@media (max-width: 1024px) {
+    /* iPad 版：2x2 網格排列 */
+    .module-container {
+        flex-wrap: wrap;
+    }
+    .module-card {
+        flex: none;
+        width: 50%;
+        height: 50vh;
+    }
+    .main-title { font-size: 2.5rem; letter-spacing: 10px; }
+}
+
+@media (max-width: 768px) {
+    /* 手機版：上下堆疊，每張圖變矮一點以便觀看 */
+    .module-card {
+        width: 100%;
+        height: 25vh;
+        flex: none;
+    }
+    .module-card:hover {
+        flex: none; /* 手機端取消伸縮，避免跳動 */
+    }
+    .main-title { font-size: 1.8rem; letter-spacing: 5px; }
+    .top-nav { padding: 0 20px; height: 70px; }
+}
 
 /* 滿版英雄區 */
 .hero-overview { position: relative; height: 100vh; width: 100%; }
