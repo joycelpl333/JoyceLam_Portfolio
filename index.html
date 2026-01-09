@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joyce Portfolio | Creative Professional</title>
+    <title>Joyce Lam | Portfolio 2025</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <header class="top-nav">
-        <button id="menu-open" class="nav-icon-btn"><i class="fas fa-bars"></i> MENU</button>
+        <button id="menu-open" class="nav-icon-btn"><i class="fas fa-bars"></i> <span data-key="menu-text">MENU</span></button>
         <button id="lang-switch" class="nav-icon-btn">EN / 中</button>
     </header>
 
     <nav id="sidebar" class="sidebar">
         <button id="close-menu" class="close-btn">&times;</button>
         <ul class="nav-links">
-            <li><a href="#home" data-key="nav-home">主頁 Home</a></li>
-            <li><a href="#photo" data-key="nav-photo">藝人攝影 Artiste</a></li>
-            <li><a href="#video" data-key="nav-video">影片製作 Production</a></li>
-            <li><a href="#social" data-key="nav-social">社群經營 Creative</a></li>
+            <li><a href="#home" data-key="nav-home">主頁</a></li>
+            <li><a href="#photo" data-key="nav-photo">藝人攝影</a></li>
+            <li><a href="#video" data-key="nav-video">影片製作</a></li>
+            <li><a href="#social" data-key="nav-social">社群經營</a></li>
             <li><hr></li>
-            <li><a href="disclaimer.html">免責聲明 Disclaimer</a></li>
-            <li><a href="contact.html">聯絡我 Contact</a></li>
+            <li><a href="disclaimer.html" data-key="nav-disclaimer">免責聲明</a></li>
+            <li><a href="contact.html" data-key="nav-contact">聯絡我</a></li>
         </ul>
     </nav>
 
@@ -31,40 +31,48 @@
         <section class="hero-overview">
             <div class="hero-title-box">
                 <h1 class="main-title">Joyce Lam</h1>
-                <p class="sub-title">PORTFOLIO 2025</p>
+                <p class="sub-title" data-key="hero-sub">VISUAL CREATIVE PORTFOLIO</p>
             </div>
             <div class="module-container">
                 <div class="module-card" onclick="scrollToSection('photo')">
-                    <div class="card-bg" style="background-image: url('images/cover1.jpeg');"></div>
+                    <div class="card-bg" style="background-image: url('images/photo-cover.jpg');"></div>
                     <div class="module-content">
-                        <h2>ARTISTE</h2>
-                        <p>Photography & Retouching</p>
+                        <h2 data-key="mod-photo">ARTISTE</h2>
+                        <p data-key="mod-photo-sub">Photography</p>
                     </div>
                 </div>
                 <div class="module-card" onclick="scrollToSection('video')">
-                    <div class="card-bg" style="background-image: url('images/IMG_0279.jpeg');"></div>
+                    <div class="card-bg" style="background-image: url('images/video-cover.jpg');"></div>
                     <div class="module-content">
-                        <h2>PRODUCTION</h2>
-                        <p>Video & Cinematography</p>
+                        <h2 data-key="mod-video">PRODUCTION</h2>
+                        <p data-key="mod-video-sub">Video Editing</p>
                     </div>
                 </div>
                 <div class="module-card" onclick="scrollToSection('social')">
-                    <div class="card-bg" style="background-image: url('images/IMG_0272.jpeg');"></div>
+                    <div class="card-bg" style="background-image: url('images/social-cover.jpg');"></div>
                     <div class="module-content">
-                        <h2>CREATIVE</h2>
-                        <p>Branding & Social Media</p>
+                        <h2 data-key="mod-social">CREATIVE</h2>
+                        <p data-key="mod-social-sub">Social Media</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="photo" class="work-section">
-            <h3 class="section-label">01. ARTISTE</h3>
-            <div id="photo-grid" class="work-grid">
-                </div>
+            <h3 class="section-label">01. ARTISTE PHOTOGRAPHY</h3>
+            <div id="photo-grid" class="work-grid"></div>
         </section>
-        
-        </main>
+
+        <section id="video" class="work-section">
+            <h3 class="section-label">02. VIDEO PRODUCTION</h3>
+            <div id="video-grid" class="work-grid"></div>
+        </section>
+
+        <section id="social" class="work-section">
+            <h3 class="section-label">03. SOCIAL MEDIA</h3>
+            <div id="social-grid" class="work-grid"></div>
+        </section>
+    </main>
 
     <button id="back-to-top" class="back-to-top">↑</button>
 
