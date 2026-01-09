@@ -1,110 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap');
 
 :root {
     --bg: #ffffff;
     --text: #1a1a1a;
     --accent: #c5a059;
-    --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-body {
-    margin: 0; background: var(--bg); color: var(--text);
-    font-family: 'Montserrat', sans-serif; overflow-x: hidden;
-}
+body { margin: 0; font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
-/* 頂部導航導航固定 */
-.top-nav {
-    position: fixed; top: 0; width: 100%; height: 100px;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0 50px; box-sizing: border-box; z-index: 1000;
-}
-
-.nav-icon-btn {
-    background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);
-    border: none; padding: 10px 20px; letter-spacing: 2px;
-    font-size: 10px; cursor: pointer; transition: 0.3s;
-}
-
+/* 導航固定 */
+.top-nav { position: fixed; top: 0; width: 100%; height: 100px; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; box-sizing: border-box; z-index: 1000; pointer-events: none; }
+.nav-icon-btn { pointer-events: auto; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border: 1px solid #eee; padding: 10px 20px; font-size: 11px; letter-spacing: 2px; cursor: pointer; transition: 0.3s; }
 .nav-icon-btn:hover { background: var(--text); color: white; }
 
-/* 標題區域 */
-.hero-title-box {
-    position: absolute; top: 15%; left: 50%; transform: translateX(-50%);
-    text-align: center; z-index: 10; pointer-events: none;
-}
+/* 側邊欄修復 */
+.sidebar { position: fixed; top: 0; left: -300px; width: 280px; height: 100%; background: #fff; z-index: 2000; transition: var(--transition); padding: 80px 40px; box-shadow: 10px 0 50px rgba(0,0,0,0.05); }
+.sidebar.active { left: 0; }
+.nav-links { list-style: none; padding: 0; }
+.nav-links li { margin: 25px 0; }
+.nav-links a { text-decoration: none; color: var(--text); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+.nav-links a:hover { color: var(--accent); padding-left: 10px; }
+.close-btn { position: absolute; top: 30px; right: 30px; border: none; background: none; font-size: 24px; cursor: pointer; }
 
-.main-title { font-size: 4rem; font-weight: 200; letter-spacing: 15px; margin: 0; text-transform: uppercase; }
-.sub-title { font-size: 0.8rem; letter-spacing: 5px; color: var(--accent); }
-
-/* 三模組高級感核心佈局 */
-.hero-overview { position: relative; height: 100vh; width: 100%; overflow: hidden; }
+/* 滿版英雄區 */
+.hero-overview { position: relative; height: 100vh; width: 100%; }
 .module-container { display: flex; height: 100%; width: 100%; }
+.module-card { flex: 1; position: relative; overflow: hidden; cursor: pointer; transition: var(--transition); }
+.module-card:hover { flex: 1.5; }
+.card-bg { width: 100%; height: 100%; background-size: cover; background-position: center; filter: grayscale(1); transition: var(--transition); }
+.module-card:hover .card-bg { filter: grayscale(0); transform: scale(1.05); }
 
-.module-card {
-    flex: 1; position: relative; overflow: hidden; cursor: pointer;
-    transition: var(--transition); border-right: 1px solid rgba(0,0,0,0.05);
-}
+/* 作品展示網格 */
+.work-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; margin-top: 30px; }
+.project-card { position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 4/5; }
+.project-img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+.project-card:hover .project-img { transform: scale(1.08); }
 
-.module-card:hover { flex: 2; }
+/* 半透明點按提示 */
+.overlay-hint { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); display: flex; justify-content: center; align-items: center; opacity: 0; transition: 0.4s; }
+.hint-text { color: white; border: 1px solid white; padding: 10px 20px; font-size: 10px; letter-spacing: 2px; border-radius: 30px; backdrop-filter: blur(5px); }
+.project-card:hover .overlay-hint { opacity: 1; }
 
-.card-bg {
-    width: 100%; height: 100%; background-size: cover; background-position: center;
-    filter: grayscale(100%); transition: var(--transition);
-}
+.back-to-top { position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px; border-radius: 50%; border: 1px solid #ddd; background: white; cursor: pointer; z-index: 100; transition: 0.5s; opacity: 0; visibility: hidden; }
 
-.module-card:hover .card-bg { filter: grayscale(0%); transform: scale(1.05); }
-
-.module-content {
-    position: absolute; bottom: 60px; left: 40px; color: white;
-    mix-blend-mode: difference; /* 讓文字在任何背景色上都可見 */
-}
-
-.module-content h2 { font-size: 1.5rem; font-weight: 300; letter-spacing: 4px; }
-.module-content p { font-size: 0.7rem; opacity: 0; transform: translateY(10px); transition: 0.5s; }
-
-.module-card:hover .module-content p { opacity: 1; transform: translateY(0); }
-
-/* 作品區間 Padding */
-.work-section { padding: 150px 10%; background: #fff; }
-.section-label { font-size: 0.7rem; letter-spacing: 5px; color: var(--accent); margin-bottom: 50px; }
-
-/* 按鈕美化 */
-.back-to-top {
-    position: fixed; bottom: 40px; right: 40px;
-    width: 50px; height: 50px; border: 1px solid #ddd;
-    background: white; border-radius: 50%; cursor: pointer;
-    transition: 0.5s; opacity: 0; z-index: 99;
-}
-
-/* 修改側邊欄初始狀態 */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: -300px; /* 改為負值，讓它初始隱藏在螢幕左側 */
-    width: 280px;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(20px);
-    z-index: 2000;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 10px 0 30px rgba(0,0,0,0.05);
-    padding: 80px 40px;
-    box-sizing: border-box;
-}
-
-/* 當有 .active 類別時才顯示 */
-.sidebar.active {
-    left: 0 !important;
-}
-
-/* 關閉按鈕樣式 */
-.close-btn {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--text);
-}
+@media (max-width: 768px) { .module-container { flex-direction: column; } .hero-title-box h1 { font-size: 2.5rem; } }
