@@ -1,104 +1,98 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;500&display=swap');
 
 :root {
     --bg: #ffffff;
     --text: #1a1a1a;
-    --accent: #c5a059;
-    --transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    --accent: #c5a059; /* 香檳金 */
+    --glass: rgba(255, 255, 255, 0.85);
+    --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 body { margin: 0; font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
-/* 導航固定 */
-.top-nav { position: fixed; top: 0; width: 100%; height: 100px; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; box-sizing: border-box; z-index: 1000; pointer-events: none; }
-.nav-icon-btn { pointer-events: auto; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border: 1px solid #eee; padding: 10px 20px; font-size: 11px; letter-spacing: 2px; cursor: pointer; transition: 0.3s; }
-.nav-icon-btn:hover { background: var(--text); color: white; }
+/* --- 頂部導航優化 (防止遮擋標題) --- */
+.top-nav {
+    position: fixed; top: 0; width: 100%; height: 80px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 40px; box-sizing: border-box; z-index: 1000;
+}
 
-/* --- 側邊欄修復 (完全隱藏) --- */
+.nav-icon-btn {
+    background: var(--glass); backdrop-filter: blur(15px);
+    border: 1px solid rgba(0,0,0,0.05); padding: 12px 25px;
+    font-size: 10px; letter-spacing: 3px; cursor: pointer;
+    text-transform: uppercase; transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+}
+
+.nav-icon-btn:hover {
+    background: var(--text); color: white; transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* --- 標題位置修正 (下移避免遮擋) --- */
+.hero-title-box {
+    position: absolute; top: 25%; /* 從 15% 下移到 25% */
+    left: 50%; transform: translateX(-50%);
+    text-align: center; z-index: 10; pointer-events: none; width: 100%;
+}
+
+.main-title { 
+    font-size: clamp(2.5rem, 8vw, 5rem); 
+    font-weight: 200; letter-spacing: 20px; margin: 0; 
+    text-transform: uppercase; line-height: 1.2;
+}
+
+/* --- Sidebar 奢華升級版 --- */
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 280px;
-    height: 100vh;
-    background: #fff;
-    z-index: 2000;
-    /* 使用百分比位移，確保完全藏在螢幕外 */
-    transform: translateX(-110%); 
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 10px 0 50px rgba(0,0,0,0.1);
+    position: fixed; top: 0; left: 0; width: 320px; height: 100vh;
+    background: var(--glass); backdrop-filter: blur(25px);
+    z-index: 2000; transform: translateX(-105%); /* 徹底藏入 */
+    transition: var(--transition); padding: 100px 30px;
+    box-shadow: 20px 0 60px rgba(0,0,0,0.05);
 }
 
-.sidebar.active {
-    transform: translateX(0); /* 點擊後滑出 */
+.sidebar.active { transform: translateX(0); }
+
+.nav-links { list-style: none; padding: 0; margin: 0; }
+.nav-links li { margin-bottom: 15px; }
+
+/* 將超連結設計成與主頁一致的按鈕樣式 */
+.nav-links a {
+    display: block; text-decoration: none; color: var(--text);
+    padding: 18px 25px; border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 2px; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; transition: var(--transition);
+    background: rgba(255,255,255,0.5);
 }
 
-/* --- 4 模組適配佈局 --- */
-.module-container {
-    display: flex;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
+.nav-links a:hover {
+    background: var(--text); color: white;
+    border-color: var(--text); padding-left: 35px; /* 滑動效果 */
 }
 
-/* 電腦版：4個並排 */
-.module-card {
-    flex: 1;
-    position: relative;
-    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+/* 關閉按鈕 */
+.close-btn {
+    position: absolute; top: 30px; right: 30px;
+    border: none; background: none; font-size: 28px; cursor: pointer;
+    opacity: 0.5; transition: 0.3s;
 }
+.close-btn:hover { opacity: 1; transform: rotate(90deg); }
 
-.module-card:hover {
-    flex: 1.5;
-}
+/* --- 4 模組響應式設計 --- */
+.module-container { display: flex; height: 100vh; width: 100%; overflow: hidden; }
+.module-card { flex: 1; position: relative; overflow: hidden; cursor: pointer; transition: var(--transition); border-right: 1px solid rgba(0,0,0,0.05); }
+.module-card:hover { flex: 1.6; }
 
-/* --- 響應式：手機與 iPad 設定 --- */
+/* 手機與 iPad 的 4 模組適配 */
 @media (max-width: 1024px) {
-    /* iPad 版：2x2 網格排列 */
-    .module-container {
-        flex-wrap: wrap;
-    }
-    .module-card {
-        flex: none;
-        width: 50%;
-        height: 50vh;
-    }
-    .main-title { font-size: 2.5rem; letter-spacing: 10px; }
+    .module-container { flex-wrap: wrap; }
+    .module-card { width: 50%; height: 50vh; flex: none; }
 }
 
 @media (max-width: 768px) {
-    /* 手機版：上下堆疊，每張圖變矮一點以便觀看 */
-    .module-card {
-        width: 100%;
-        height: 25vh;
-        flex: none;
-    }
-    .module-card:hover {
-        flex: none; /* 手機端取消伸縮，避免跳動 */
-    }
-    .main-title { font-size: 1.8rem; letter-spacing: 5px; }
-    .top-nav { padding: 0 20px; height: 70px; }
+    .module-card { width: 100%; height: 25vh; }
+    .hero-title-box { top: 20%; }
+    .main-title { letter-spacing: 10px; font-size: 2rem; }
+    .sidebar { width: 100%; } /* 手機端側邊欄全屏，更有高級感 */
 }
-
-/* 滿版英雄區 */
-.hero-overview { position: relative; height: 100vh; width: 100%; }
-.module-container { display: flex; height: 100%; width: 100%; }
-.module-card { flex: 1; position: relative; overflow: hidden; cursor: pointer; transition: var(--transition); }
-.module-card:hover { flex: 1.5; }
-.card-bg { width: 100%; height: 100%; background-size: cover; background-position: center; filter: grayscale(1); transition: var(--transition); }
-.module-card:hover .card-bg { filter: grayscale(0); transform: scale(1.05); }
-
-/* 作品展示網格 */
-.work-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; margin-top: 30px; }
-.project-card { position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 4/5; }
-.project-img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
-.project-card:hover .project-img { transform: scale(1.08); }
-
-/* 半透明點按提示 */
-.overlay-hint { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); display: flex; justify-content: center; align-items: center; opacity: 0; transition: 0.4s; }
-.hint-text { color: white; border: 1px solid white; padding: 10px 20px; font-size: 10px; letter-spacing: 2px; border-radius: 30px; backdrop-filter: blur(5px); }
-.project-card:hover .overlay-hint { opacity: 1; }
-
-.back-to-top { position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px; border-radius: 50%; border: 1px solid #ddd; background: white; cursor: pointer; z-index: 100; transition: 0.5s; opacity: 0; visibility: hidden; }
-
-@media (max-width: 768px) { .module-container { flex-direction: column; } .hero-title-box h1 { font-size: 2.5rem; } }
