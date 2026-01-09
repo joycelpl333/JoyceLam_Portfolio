@@ -29,34 +29,46 @@
 
     <main id="home">
         <section class="hero-overview">
-            <div class="hero-title-box">
-                <h1 class="main-title">Joyce Lam</h1>
-                <p class="sub-title" data-key="hero-sub">VISUAL CREATIVE PORTFOLIO</p>
+    <div class="hero-title-box">
+        <h1 class="main-title">Joyce Lam</h1>
+        <p class="sub-title" data-key="hero-sub">VISUAL & AI CREATIVE PORTFOLIO</p>
+    </div>
+    <div class="module-container">
+        <div class="module-card" onclick="scrollToSection('photo')">
+            <div class="card-bg" style="background-image: url('images/photo-cover.jpg');"></div>
+            <div class="module-content">
+                <h2 data-key="mod-photo">ARTISTE</h2>
+                <p>Photography</p>
             </div>
-            <div class="module-container">
-                <div class="module-card" onclick="scrollToSection('photo')">
-                    <div class="card-bg" style="background-image: url('images/photo-cover.jpg');"></div>
-                    <div class="module-content">
-                        <h2 data-key="mod-photo">ARTISTE</h2>
-                        <p data-key="mod-photo-sub">Photography</p>
-                    </div>
-                </div>
-                <div class="module-card" onclick="scrollToSection('video')">
-                    <div class="card-bg" style="background-image: url('images/video-cover.jpg');"></div>
-                    <div class="module-content">
-                        <h2 data-key="mod-video">PRODUCTION</h2>
-                        <p data-key="mod-video-sub">Video Editing</p>
-                    </div>
-                </div>
-                <div class="module-card" onclick="scrollToSection('social')">
-                    <div class="card-bg" style="background-image: url('images/social-cover.jpg');"></div>
-                    <div class="module-content">
-                        <h2 data-key="mod-social">CREATIVE</h2>
-                        <p data-key="mod-social-sub">Social Media</p>
-                    </div>
-                </div>
+        </div>
+        <div class="module-card" onclick="scrollToSection('video')">
+            <div class="card-bg" style="background-image: url('images/video-cover.jpg');"></div>
+            <div class="module-content">
+                <h2 data-key="mod-video">VIDEO</h2>
+                <p>Production</p>
             </div>
-        </section>
+        </div>
+        <div class="module-card" onclick="scrollToSection('social')">
+            <div class="card-bg" style="background-image: url('images/social-cover.jpg');"></div>
+            <div class="module-content">
+                <h2 data-key="mod-social">CREATIVE</h2>
+                <p>Social Media</p>
+            </div>
+        </div>
+        <div class="module-card" onclick="scrollToSection('ai')">
+            <div class="card-bg" style="background-image: url('images/ai-cover.jpg');"></div>
+            <div class="module-content">
+                <h2 data-key="mod-ai">AI APP</h2>
+                <p>Innovation</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="ai" class="work-section">
+    <h3 class="section-label">04. AI INNOVATION</h3>
+    <div id="ai-grid" class="work-grid"></div>
+</section>
 
         <section id="photo" class="work-section">
             <h3 class="section-label">01. ARTISTE PHOTOGRAPHY</h3>
