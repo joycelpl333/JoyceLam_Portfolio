@@ -11,6 +11,7 @@ const translations = {
         "mod-photo": "藝人攝影",
         "mod-video": "影片製作",
         "mod-social": "社群經營",
+        "mod-ai": "AI 應用",
         "view-btn": "點擊觀看作品 / 掃描 QR"
     },
     en: {
@@ -25,6 +26,7 @@ const translations = {
         "mod-photo": "PHOTOGRAPHY",
         "mod-video": "VIDEO EDIT",
         "mod-social": "SOCIAL MEDIA",
+        "mod-ai": "AI INNOVATION",
         "view-btn": "VIEW WORK / SCAN QR"
     }
 };
